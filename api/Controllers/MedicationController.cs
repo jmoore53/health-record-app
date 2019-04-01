@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using health_record_app.Models;
 
 namespace health_record_app.Controllers {
-    [Route("api/books")]
+    [Route("api/medications")]
     [ApiController]
     public class MedicationController : ControllerBase {
             private readonly HealthRecordAppContext db;
