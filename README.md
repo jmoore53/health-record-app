@@ -17,6 +17,3 @@ This application uses a postgresql database and some variables in the database n
   - Database User Password: password
 
 
-
-
-
