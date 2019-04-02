@@ -21,7 +21,7 @@ This application uses a postgresql database and some variables in the database n
 
 ### Clone 
 
-![Image of Clone](https://www.github.com/jmoore53/health-record-app/readme_help/clone.png)
+![Image of Clone](https://github.com/jmoore53/health-record-app/blob/master/readme_help/clone.png)
 
 Click the clone button on Github and in a terminal within a folder you can locate; run the command `git clone https://github.com/jmoore53/health-record-app.git`
 
