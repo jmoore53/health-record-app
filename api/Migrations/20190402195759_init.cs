@@ -9,22 +9,6 @@ namespace health_record_app.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Appointments",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
-                    appointment_date = table.Column<DateTime>(nullable: false),
-                    reason = table.Column<string>(nullable: true),
-                    doctor_id = table.Column<int>(nullable: false),
-                    patient_id = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Appointments", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Doctors",
                 columns: table => new
                 {
@@ -71,7 +55,8 @@ namespace health_record_app.Migrations
                 name: "Patient",
                 columns: table => new
                 {
-                    id = table.Column<string>(nullable: false),
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     first_name = table.Column<string>(nullable: true),
                     last_name = table.Column<string>(nullable: true),
                     middle_initial = table.Column<char>(nullable: false),
@@ -82,6 +67,44 @@ namespace health_record_app.Migrations
                 {
                     table.PrimaryKey("PK_Patient", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    appointment_date = table.Column<DateTime>(nullable: false),
+                    reason = table.Column<string>(nullable: true),
+                    doctorid = table.Column<int>(nullable: true),
+                    patientid = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Doctors_doctorid",
+                        column: x => x.doctorid,
+                        principalTable: "Doctors",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Appointments_Patient_patientid",
+                        column: x => x.patientid,
+                        principalTable: "Patient",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_doctorid",
+                table: "Appointments",
+                column: "doctorid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Appointments_patientid",
+                table: "Appointments",
+                column: "patientid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -90,13 +113,13 @@ namespace health_record_app.Migrations
                 name: "Appointments");
 
             migrationBuilder.DropTable(
-                name: "Doctors");
-
-            migrationBuilder.DropTable(
                 name: "Illnesses");
 
             migrationBuilder.DropTable(
                 name: "Medications");
+
+            migrationBuilder.DropTable(
+                name: "Doctors");
 
             migrationBuilder.DropTable(
                 name: "Patient");
