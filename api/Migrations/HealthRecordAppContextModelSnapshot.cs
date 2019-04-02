@@ -26,13 +26,17 @@ namespace health_record_app.Migrations
 
                     b.Property<DateTime>("appointment_date");
 
-                    b.Property<int>("doctor_id");
+                    b.Property<int?>("doctorid");
 
-                    b.Property<int>("patient_id");
+                    b.Property<int?>("patientid");
 
                     b.Property<string>("reason");
 
                     b.HasKey("id");
+
+                    b.HasIndex("doctorid");
+
+                    b.HasIndex("patientid");
 
                     b.ToTable("Appointments");
                 });
@@ -83,7 +87,7 @@ namespace health_record_app.Migrations
 
             modelBuilder.Entity("health_record_app.Models.Patient", b =>
                 {
-                    b.Property<string>("id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("date_of_birth");
@@ -99,6 +103,17 @@ namespace health_record_app.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Patient");
+                });
+
+            modelBuilder.Entity("health_record_app.Models.Appointment", b =>
+                {
+                    b.HasOne("health_record_app.Models.Doctor", "doctor")
+                        .WithMany()
+                        .HasForeignKey("doctorid");
+
+                    b.HasOne("health_record_app.Models.Patient", "patient")
+                        .WithMany()
+                        .HasForeignKey("patientid");
                 });
 #pragma warning restore 612, 618
         }
