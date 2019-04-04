@@ -1,0 +1,18 @@
+body {
+    color: #021A54;
+    font-family: sans-serif;
+}
+
+.welcome {
+    padding: 30px;
+    padding-top: 100px;
+    width: 100%;
+    text-align: center;
+    color:  #021A54;
+    font-size: 50px;
+    font-family: sans-serif;
+}
+
+.intro {
+    font-size: 25px;
+}
