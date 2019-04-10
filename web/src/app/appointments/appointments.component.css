@@ -65,9 +65,10 @@ tr:hover {
     padding: 5px;
 }
 
-.add {
+.input {
     display: flex;
-    justify-content: center; 
+    justify-content: space-evenly; 
     width: 100%;
     padding-top: 40px;
+    font-size: 14px;
 }
