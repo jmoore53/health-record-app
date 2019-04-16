@@ -29,7 +29,7 @@ namespace health_record_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<HealthRecordAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("HealthRecordAppConnection")));
+            services.AddDbContext<HealthRecordAppContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")));
             services.AddMvc();
         }
 

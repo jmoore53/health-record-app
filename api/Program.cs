@@ -15,7 +15,15 @@ namespace health_record_app
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = new WebHostBuilder()
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseUrls("http://*:5000") // listen on port 5000 on all network interfaces
+            .UseIISIntegration()
+            .UseStartup<Startup>()
+            .Build();
+
+            host.Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

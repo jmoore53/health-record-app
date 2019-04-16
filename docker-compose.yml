@@ -1,0 +1,47 @@
+version: "3"
+services: 
+  api: 
+    build: ./api/
+    ports: 
+      - '5000:5000'
+    depends_on:
+      - db
+    environment:
+      DB_CONNECTION_STRING: "host=db;port=5432;database=health_record_app;username=health_record_user;password=password;pooling=true"
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "health_record_user"
+      POSTGRES_DB: "health_record_app"
+
+  node:
+    build: ./web/
+    ports: 
+      - "4200:4200"
+    command: yarn run start
+    depends_on:
+      - api
+    environment:
+      - VIRTUAL_HOST=localhost
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - nginx-proxy-v:/etc/nginx/vhost.d
+      - nginx-proxy-v:/usr/share/nginx/html
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    restart: always
+    privileged: true
+  
+volumes:
+  db:
+  nginx-proxy-v:
