@@ -8,21 +8,27 @@ namespace tests
     {
         [Fact]
 
-        public void UpdateName()
+        public void UpdateDoc()
         {
+          //Arrange
+          var doc = new Doctor(){
+              id = 1,
+              first_name = "Marcus",
+              last_name = "Cambridge",
+              social_security_number = "467-99-9485",
+              specialty = "Cardiovascular"
+          };
 
           //Update Name
             Console.Write("New name: ");
             var newName = Console.ReadLine();
-            book.UpdateName(newName);
+            doc.UpdateName(newName);
         
-        }
-
-        public void UpdateSSN(){
              //Update SSN
-            Console.Write("New publisher: ");
+            Console.Write("New SSN: ");
             var newSSN = Console.ReadLine();
-            book.UpdateSSN(newSSN);
+            doc.UpdateSSN(newSSN);
+        
 
         }
     }
