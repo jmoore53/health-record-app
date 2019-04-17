@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { Appointment } from './appointment';
+import { AppointmentsService } from './appointments.service';
 
 @Component({
   selector: 'app-appointments',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsComponent implements OnInit {
 
-  constructor() { }
+  appointments: Appointment[]
+  constructor(private appointmentService: AppointmentsService) {}
+
+  getAppointments(){
+    this.appointmentService.getAppointments().subscribe(appointments => (this.appointments = appointments));
+    console.log(this.appointments);
+  }
 
   ngOnInit() {
+    this.getAppointments();
   }
 
 }

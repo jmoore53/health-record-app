@@ -14,21 +14,12 @@
       <th>SSN</th>
       <th></th>
     </tr>
-    <tr>
-      <td>test</td>
-      <td>test</td>
-      <td>test</td>
-      <td>test</td>
-      <td>test</td>
-      <td class="edit">
-          <button class="btngroup">Delete</button>
-        </td>
-    </tr>
+    <app-patient-row *ngFor="let patient of patients" [patient]="patient"></app-patient-row>
   </table>
   <div class="input">
-    <input type="date" placeholder="Date">
-    <input type="text" placeholder="ID">
-    <input type="text" placeholder="Reason">
+    <input type="text" placeholder="First Name">
+    <input type="text" placeholder="Last Name">
+    <input type="text" placeholder="SSN">
     <button class="homeBtn"> ADD NEW </button>
   </div>
   
