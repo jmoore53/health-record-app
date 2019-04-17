@@ -4,9 +4,7 @@ Health record application for AMIS 3610.
 
 ## Setup
 
-  - Dotnet: v2.2.105
-  - Node: v11.6.0
-  - Postgresql: v10.3
+My least favorite thing when working on projects is consistency across developing environments. In an attempt to solve this, I have added a `docker-compose.yml` file and `Dockerfiles` in the correct locations. If you have docker on your machine, `docker-compose build && docker-compose up` in the root of this directoy should get you up and running with `http://localhost/` running the angular application and `http://localhost:5000/` running the api. *Note this is for a development environment* 
 
 
 ### Database Setup

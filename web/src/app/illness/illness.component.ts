@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Illness } from './illness'
+import { IllnessService } from './illness.service'
 
 @Component({
   selector: 'app-illness',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IllnessComponent implements OnInit {
 
-  constructor() { }
+  illness: Illness[]
+  constructor(private illnessService: IllnessService) {}
 
-  ngOnInit() {
+  getIllness(){
+    this.illnessService.getIllness().subscribe(illness => (this.illness = illness));
+    console.log(this.illness);
   }
 
+  ngOnInit() {
+    this.getIllness();
+  }
 }

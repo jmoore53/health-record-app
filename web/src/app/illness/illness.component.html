@@ -11,18 +11,11 @@
       <th>ID</th>
       <th></th>
     </tr>
-    <tr>
-      <td>test</td>
-      <td>test</td>
-      <td class="edit">
-        <button class="btngroup">Delete</button>
-      </td>
-    </tr>
+    <app-illness-row *ngFor="let illnes of illness" [illness]="illness"></app-illness-row>
   </table>
   <div class="input">
-    <input type="date" placeholder="Date">
     <input type="text" placeholder="ID">
-    <input type="text" placeholder="Reason">
+    <input type="text" placeholder="Name">
     <button class="homeBtn"> ADD NEW </button>
   </div>
   

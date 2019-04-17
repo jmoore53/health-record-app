@@ -6,24 +6,17 @@
   <h1> Appointment Data </h1>
 </div>
 <table>
-    <tr>
-      <th>Date</th>
-      <th>ID</th>
-      <th>Reason</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>test</td>
-      <td>test</td>
-      <td>test</td>
-      <td class="edit">
-        <button class="btngroup">Delete</button>
-      </td>
-    </tr>
-  </table>
-  <div class="input">
-    <input type="date" placeholder="Date">
-    <input type="text" placeholder="ID">
-    <input type="text" placeholder="Reason">
-    <button class="homeBtn"> ADD NEW </button>
-  </div>
+  <tr>
+    <th>Date</th>
+    <th>ID</th>
+    <th>Reason</th>
+    <th></th>
+  </tr>
+  <app-appointment-row *ngFor="let appointment of appointments" [appointment]="appointment"></app-appointment-row>
+</table>
+<div class="input">
+  <input type="date" placeholder="Date">
+  <input type="text" placeholder="ID">
+  <input type="text" placeholder="Reason">
+  <button class="homeBtn" id="newAppointment"> ADD NEW </button>
+</div>
