@@ -4,16 +4,7 @@ Health record application for AMIS 3610.
 
 ## Setup
 
-My least favorite thing when working on projects is consistency across developing environments. In an attempt to solve this, I have added a `docker-compose.yml` file and `Dockerfiles` in the correct locations. If you have docker on your machine, `docker-compose build && docker-compose up` in the root of this directoy should get you up and running with `http://localhost/` running the angular application and `http://localhost:5000/` running the api. *Note this is for a development environment* 
-
-
-### Database Setup
-
-This application uses a postgresql database and some variables in the database needs to be configured with the following settings:
-  - Database named: health_record_app
-  - Database User:  health_record_user
-  - Database User Password: password
-
+My least favorite thing when working on projects is consistency across developing environments. In an attempt to solve this, I have added a `docker-compose.yml` file and `Dockerfiles` in the correct locations. If you have docker on your machine, `docker-compose build && docker-compose up` in the root of this directoy should get you up and running with `http://localhost/` running the angular application, `http://localhost:5000/` running the api, and `localhost:5432` running the postgres database. *Note this is for a development environment*
 
 # Getting Started
 
